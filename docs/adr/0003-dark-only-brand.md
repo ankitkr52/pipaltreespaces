@@ -1,0 +1,3 @@
+# Dark-only brand, no theme toggle
+
+The brand *is* dark luxury (Valora-hotel-inspired): near-black surfaces, warm off-white type, gold/bronze accent. There is no light counterpart. The site must not react to `prefers-color-scheme: light` and must not expose a user-facing theme switcher. Treat tokens in PRD §11.2 as the single source of truth and never hard-code hex. A future reader considering "add light mode" or "respect OS preference" should reopen this ADR first — reversing it means rebuilding photography overlays, trust-signal copy, and the entire token palette, not just flipping a boolean.

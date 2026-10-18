@@ -1,0 +1,3 @@
+# Static export + JSON/MDX content, no CMS
+
+Content (properties, testimonials, blog) lives in version-controlled files under `/data/` and ships via `next build && next export` to Cloudflare Pages. No backend, no CMS, no server runtime. The advisor's catalogue is small (~50 properties) and updates land through a dev redeploy. Revisit if the catalogue approaches ~500 properties, or if a non-developer needs to publish edits without a build. The build pipeline (`generateStaticParams`, `next-sitemap`, Cloudinary URLs) and the "no API routes" rule follow from this choice — don't reintroduce server-only patterns without reopening this decision.
