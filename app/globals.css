@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables for cases where Tailwind values can't reach — chip gradient
+   fade, scroll-padding math, sticky-bar height. */
+:root {
+  --bg-base: #0B0B0D;
+  --sticky-cta-h: 76px; /* mobile sticky bar height incl. padding */
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--bg-base);
+  /* A2 — keep focused inputs visible above sticky mobile CTA bar */
+  scroll-padding-bottom: calc(var(--sticky-cta-h) + env(safe-area-inset-bottom));
+  scroll-padding-top: 72px; /* desktop nav; mobile nav is 60px so this is fine */
+}
+
+body {
+  background-color: var(--bg-base);
+  color: #F2EFE8; /* text/primary */
+  font-feature-settings: "ss01";
+}
+
+/* Hide chip-rail scrollbar across browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Respect reduced motion — belt + braces, Tailwind motion-safe also used in JSX */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
