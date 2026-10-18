@@ -104,8 +104,30 @@ Nav → Hero → City card → Property card → Chip → Filter bar → Breadcr
 - Minimum body contrast 4.5:1 against `bg/raised`.
 - Focus ring (solid gold + 2px dark offset) on every interactive element.
 - Icon-only buttons carry `aria-label`.
-- CTA target ≥ 44×44px.
-- Chip overflow: arrow-key scrolling for keyboard users.
+- CTA target ≥ 44×44px with ≥8px gap between adjacent targets.
+- Chip overflow: arrow-key scrolls focused chip via `scrollIntoView({block:'nearest'})`.
+
+### A11y raises from ui-ux-pro-max audit (locked)
+
+- **A1 — Chip semantics + overflow:** chips are `<button type="button" role="tab" aria-pressed={isActive}>`, not styled divs. Scrollable rail is OK, but add a `+N more` disclosure if total chips exceed visible count; chip rail wraps (does not scroll) when total ≤ 5.
+- **A2 — Sticky bar vs focus:** apply `scroll-padding-bottom: calc(var(--sticky-cta-h) + env(safe-area-inset-bottom))` on `body`. Sticky bar is last in tab order, never first.
+- **A3 — Card CLS:** reserve a 24px-high status-pill slot on property cards even when no pill is applied.
+- **A5 — Font-load CLS:** `next/font/google` `adjustFontFallback: 'Times New Roman'` for Fraunces, `'Arial'` for Inter.
+- **A6 — Modal:** focus trap, `Esc` closes, `aria-labelledby` + `aria-describedby`, focus returns to trigger on close, body scroll lock.
+- **A7 — Form errors:** inline error below field (`text-signal-warn`, 14px, `aria-live="polite"`), `aria-describedby` wiring; top-of-form error summary when >1 error.
+- **A8 — Toast:** `role="status"`, auto-dismiss 5s, dismissible, bottom-centre on mobile (above sticky bar), top-right on desktop.
+- **A9 — Skip link:** visually-hidden-until-focused first focusable element: `href="#main"`, Fraunces 20px, gold on `bg/base` when focused.
+- **A10 — Target size:** gallery prev/next arrows, counter dots, chip overflow arrows, modal close-X — all ≥44×44px tap targets.
+- **A11 — Focus ring contrast verified:** gold vs `bg/base` ≈ 8.5:1; vs `bg/raised` ≈ 7.5:1 — clears AAA 3:1 state-contrast.
+
+### Component inventory additions (from audit)
+
+Append to the §11.6 list — carried in the §16.1 build order after the base set:
+- **Modal (Request Callback)** — focus-trapped, Esc-close, `aria-labelledby`.
+- **Form field + inline error** — label, hint, control, error row.
+- **Error summary (top of form)** — appears when >1 error, links to each field.
+- **Toast / snackbar** — status/success/error variants.
+- **Skip-to-content link** — first focusable element on every page.
 
 ---
 

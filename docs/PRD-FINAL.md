@@ -575,9 +575,10 @@ Load fonts via `next/font/google` with `display: 'swap'` and preload only the we
 
 ### 11.8 Accessibility floor (non-negotiable on dark)
 - Minimum body contrast 4.5:1 against `bg/raised`. Gold on dark meets AA for 14pt+.
-- Focus ring (§11.2 `focus/ring`) visible on every interactive element — never `outline: none` without a replacement.
+- Focus ring (§11.2 `focus/ring`) visible on every interactive element — never `outline: none` without a replacement. **Verified:** gold vs `bg/base` ≈ 8.5:1; vs `bg/raised` ≈ 7.5:1 — clears AAA 3:1 state-contrast.
 - Icon-only buttons carry `aria-label`.
-- CTA target ≥ 44×44px.
+- CTA target ≥ 44×44px with ≥8px gap between adjacent tap targets.
+- **A11y raises from design-system audit (see `docs/design-system.md` for full list):** chips are `<button aria-pressed>` with `+N` disclosure when overflowing; `body` carries `scroll-padding-bottom` matching the sticky mobile CTA bar; property card reserves a 24px status-pill slot (CLS); `next/font` `adjustFontFallback` set for both Fraunces and Inter; modal is focus-trapped with Esc-close; forms carry inline errors (`aria-live="polite"`) + top-of-form summary when >1; toast uses `role="status"`; skip-to-content link is the first focusable element on every page.
 
 ### 11.9 Logo & brand marks
 - Client-supplied logo (gold peepal tree over a house roof on black). Lockup: logo + wordmark side-by-side on desktop header, logo-only on mobile header.
