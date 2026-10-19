@@ -26,3 +26,8 @@ dist/
 # claude workspace (local only)
 .claude/settings.local.json
 .scratch/
+.docs/adr
+.docs/agents
+.docs/PRD-FINAL.md
+.docs/design-system.md
+.refrence/dribbble
