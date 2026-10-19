@@ -63,8 +63,8 @@ A `wa.me` link with a pre-filled message naming the property/city. The primary c
 _Avoid_: WhatsApp button (describes the pixel, not the surface).
 
 **Request Callback**:
-The Web3Forms-backed form used as the desktop/non-WhatsApp fallback — fields: name, phone, email, city, message. Submissions email the advisor.
-_Avoid_: contact form, enquiry form.
+The edge-handler-backed form used as the desktop/non-WhatsApp fallback — fields: name, phone, email, city, message. The form posts to `/api/callback` (a Cloudflare Pages Function on the edge runtime), which validates with Zod, drops honeypot hits, rate-limits per IP, and sends the lead to the advisor via Resend.
+_Avoid_: contact form, enquiry form, Web3Forms (the previous backend, replaced in PRD v2.1).
 
 ### Pages
 
@@ -95,6 +95,6 @@ _Avoid_: gold color, gold branding (not a theme — an accent).
 A page generated at build time from config/data with its own unique SEO intro — every `/[city]/[category]` and Property Detail URL.
 _Avoid_: dynamic page (misleading — it's static).
 
-**Static Export**:
-The Next.js build output under `output: 'export'`: a pre-rendered `out/` directory with no server runtime. All content lives in `/data/*` + `/data/blog/*.mdx` and ships via redeploy.
-_Avoid_: SSG (ambiguous with ISR), prerender.
+**Static Build**:
+The Next.js production build shipped to Cloudflare Pages via `@cloudflare/next-on-pages`. Every page route is pre-generated at build time with `generateStaticParams`; one edge route handler (`/api/callback`) exists for the Request Callback form. No DB, no session, no CMS. All content lives in `/data/*` + `/data/blog/*.mdx` and ships via redeploy. See ADR-0004.
+_Avoid_: static export, `output: 'export'` (the pre-v2.1 posture, superseded), SSG (ambiguous with ISR), prerender.

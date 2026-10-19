@@ -1,0 +1,74 @@
+[
+  {
+    "id": "t-patna-1",
+    "name": "Riya Sharma",
+    "locality": "Boring Road, Patna",
+    "cityOfInterest": "patna",
+    "quoteTitle": "Took the guesswork out of RERA",
+    "quoteBody": "He walked me through the layout approval, title chain, and set up a site visit the next day. No pressure, no inflated price.",
+    "avatarType": "initials",
+    "rating": 5,
+    "featured": true,
+    "createdAt": "2026-05-02"
+  },
+  {
+    "id": "t-pune-1",
+    "name": "Anil Khanna",
+    "locality": "Hinjewadi, Pune",
+    "cityOfInterest": "pune",
+    "quoteTitle": "Shortlist in two days",
+    "quoteBody": "Sent me three options matched to my budget and possession timeline on day one. Weekend site visit was already booked.",
+    "avatarType": "initials",
+    "rating": 5,
+    "featured": true,
+    "createdAt": "2026-07-18"
+  },
+  {
+    "id": "t-gaya-1",
+    "name": "Meera Prasad",
+    "locality": "Bodhgaya, Gaya",
+    "cityOfInterest": "gaya",
+    "quoteTitle": "Local-market knowledge showed",
+    "quoteBody": "Flagged a title issue on a plot I was almost committed to. Pointed me to a cleaner option in the same belt.",
+    "avatarType": "initials",
+    "rating": 5,
+    "featured": false,
+    "createdAt": "2026-06-11"
+  },
+  {
+    "id": "t-patna-2",
+    "name": "Suresh Verma",
+    "locality": "Rajendra Nagar, Patna",
+    "cityOfInterest": "patna",
+    "quoteTitle": "First-time buyer, treated right",
+    "quoteBody": "I had a hundred questions. Got patient answers over WhatsApp without being nudged to close.",
+    "avatarType": "initials",
+    "rating": 4,
+    "featured": true,
+    "createdAt": "2026-08-04"
+  },
+  {
+    "id": "t-pune-2",
+    "name": "Divya Rao",
+    "locality": "Baner, Pune",
+    "cityOfInterest": "pune",
+    "quoteTitle": "Penthouse options I didn't find elsewhere",
+    "quoteBody": "The three options we saw weren't on any portal. Direct builder relationship made the difference on price.",
+    "avatarType": "initials",
+    "rating": 5,
+    "featured": false,
+    "createdAt": "2026-09-01"
+  },
+  {
+    "id": "t-patna-3",
+    "name": "Arjun Mishra",
+    "locality": "Danapur, Patna",
+    "cityOfInterest": "patna",
+    "quoteTitle": "Plot-vs-flat, cleared up fast",
+    "quoteBody": "Walked me through what each option would look like at 10 years. I came in confused, left with a plan.",
+    "avatarType": "initials",
+    "rating": 5,
+    "featured": false,
+    "createdAt": "2026-09-20"
+  }
+]

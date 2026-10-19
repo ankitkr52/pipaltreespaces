@@ -31,3 +31,5 @@ dist/
 .docs/PRD-FINAL.md
 .docs/design-system.md
 .refrence/dribbble
+.scratch
+*.tsbuildinfo
