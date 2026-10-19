@@ -7,6 +7,9 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     globals: false,
   },
+  oxc: {
+    jsx: { runtime: 'automatic' },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
