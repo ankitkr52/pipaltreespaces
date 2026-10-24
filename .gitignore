@@ -33,3 +33,5 @@ dist/
 .refrence/dribbble
 .scratch
 *.tsbuildinfo
+# Playwright MCP verification artifacts (screenshots, console logs)
+.playwright-mcp/

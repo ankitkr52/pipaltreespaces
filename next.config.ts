@@ -9,6 +9,11 @@ const config: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      // Interim dummy images until the Cloudinary account lands (see PRD §13).
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
     ],
   },
   async redirects() {
