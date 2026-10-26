@@ -7,23 +7,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { Property, Possession } from "@/lib/types";
+import type { Property } from "@/lib/types";
 import { formatPrice, formatArea } from "@/lib/format";
-
-const POSSESSION_META: Record<
-  Possession,
-  { label: string; dotClass: string }
-> = {
-  ready: { label: "Ready to move", dotClass: "bg-signal-success" },
-  "under-construction": {
-    label: "Under construction",
-    dotClass: "bg-signal-warn",
-  },
-  upcoming: { label: "Upcoming", dotClass: "bg-signal-info" },
-};
+import { PropertyBadge } from "@/components/property/PropertyBadge";
+import { RateDisclaimer } from "@/components/ui/RateDisclaimer";
 
 export function PropertyCard({ property: p }: { property: Property }) {
-  const possession = POSSESSION_META[p.possession];
   const detailHref = `/${p.city}/${p.category}/${p.slug}`;
   const cover = p.images[0];
 
@@ -52,16 +41,8 @@ export function PropertyCard({ property: p }: { property: Property }) {
 
         <div className="p-5">
           {/* A3 — reserved status slot: fixed 24px row even when empty */}
-          <div className="h-6 mb-2 flex items-center gap-3 text-meta-m text-text-secondary">
-            <span className="inline-flex items-center gap-2">
-              <span className={"h-2 w-2 rounded-full " + possession.dotClass} aria-hidden />
-              {possession.label}
-            </span>
-            {p.plotSubtype && (
-              <span className="text-brand-bronze">
-                {p.plotSubtype === "plotted-development" ? "Plotted Development" : "Standalone"}
-              </span>
-            )}
+          <div className="h-6 mb-2">
+            <PropertyBadge property={p} />
           </div>
 
           <h3 className="font-display text-h3-m md:text-h3-d text-text-primary tracking-[-0.01em] line-clamp-2">
@@ -90,6 +71,11 @@ export function PropertyCard({ property: p }: { property: Property }) {
           <p className="mt-3 inline-block text-meta-m text-text-muted tabular-nums border-b border-brand-bronze/40 pb-[2px]">
             RERA {p.rera}
           </p>
+
+          {/* Rate disclaimer — hover-reveal footnote (no CLS: collapses when idle) */}
+          <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-hover motion-safe:group-hover:max-h-20 group-hover:opacity-100">
+            <RateDisclaimer className="mt-3" />
+          </div>
         </div>
       </Link>
     </article>
