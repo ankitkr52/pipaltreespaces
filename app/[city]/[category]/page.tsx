@@ -4,9 +4,11 @@
 // which owns filter state and the grid. Pre-generated per city × its OWN
 // categories (cities carry different category lists).
 
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { FilterBar } from "@/components/filters/FilterBar";
+import { GridSkeleton } from "@/components/ui/GridSkeleton";
 import { getCities, getCity, getCategory, getProperties } from "@/lib/data";
 import { SEO_INTROS } from "@/data/cities";
 import type { CitySlug, CategorySlug } from "@/lib/types";
@@ -48,12 +50,22 @@ export default async function CategoryPage({
         </div>
       </header>
 
-      <FilterBar
-        city={city.slug}
-        category={category}
-        categories={city.categories}
-        properties={properties}
-      />
+      {/* FilterBar reads the URL via useSearchParams — a Suspense boundary is
+          required so the page can still be statically generated. */}
+      <Suspense
+        fallback={
+          <div className="mx-auto max-w-[1280px] px-4 py-8 lg:px-8 lg:py-12">
+            <GridSkeleton />
+          </div>
+        }
+      >
+        <FilterBar
+          city={city.slug}
+          category={category}
+          categories={city.categories}
+          properties={properties}
+        />
+      </Suspense>
     </>
   );
 }
