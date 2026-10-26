@@ -15,7 +15,7 @@ const fraunces = Fraunces({
   weight: ["400", "600"],
   variable: "--font-fraunces",
   display: "swap",
-  adjustFontFallback: "Times New Roman",
+  adjustFontFallback: true,
 });
 
 const inter = Inter({
@@ -23,7 +23,7 @@ const inter = Inter({
   weight: ["400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
-  adjustFontFallback: "Arial",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
