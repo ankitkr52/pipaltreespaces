@@ -21,6 +21,7 @@ export function Gallery({
   const [lightbox, setLightbox] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const touchX = useRef<number | null>(null);
+  const swiped = useRef(false);
 
   const count = images.length;
   const alt = `${title} — ${locality}`;
@@ -54,7 +55,8 @@ export function Gallery({
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchX.current === null) return;
     const dx = e.changedTouches[0].clientX - touchX.current;
-    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    swiped.current = Math.abs(dx) > 40;
+    if (swiped.current) go(dx < 0 ? 1 : -1);
     touchX.current = null;
   };
 
@@ -64,7 +66,14 @@ export function Gallery({
       <div className="relative w-full overflow-hidden rounded-card bg-bg-raised" style={{ aspectRatio: "16 / 9" }}>
         <button
           type="button"
-          onClick={() => setLightbox(true)}
+          onClick={() => {
+            // A swipe ends in a click too — don't open the lightbox on swipe.
+            if (swiped.current) {
+              swiped.current = false;
+              return;
+            }
+            setLightbox(true);
+          }}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           aria-label="Open photo in full screen"

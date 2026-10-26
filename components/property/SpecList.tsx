@@ -4,12 +4,7 @@
 
 import type { Property } from "@/lib/types";
 import { formatArea } from "@/lib/format";
-
-const POSSESSION_LABEL: Record<Property["possession"], string> = {
-  ready: "Ready to move",
-  "under-construction": "Under construction",
-  upcoming: "Upcoming",
-};
+import { POSSESSION_LABEL } from "@/components/property/PropertyBadge";
 
 export function SpecList({ property: p }: { property: Property }) {
   const rows: Array<[string, string]> = [];

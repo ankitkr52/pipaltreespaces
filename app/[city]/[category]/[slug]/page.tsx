@@ -12,7 +12,7 @@ import { Gallery } from "@/components/property/Gallery";
 import { SpecList } from "@/components/property/SpecList";
 import { WhyBuy } from "@/components/property/WhyBuy";
 import { SimilarProperties } from "@/components/property/SimilarProperties";
-import { PropertyBadge } from "@/components/property/PropertyBadge";
+import { PropertyBadge, POSSESSION_LABEL } from "@/components/property/PropertyBadge";
 import { RateDisclaimer } from "@/components/ui/RateDisclaimer";
 import { CallbackForm } from "@/components/forms/CallbackForm";
 import { Button } from "@/components/ui/Button";
@@ -36,10 +36,8 @@ export async function generateMetadata({
   const { city, category, slug } = await params;
   const property = getProperty(city as CitySlug, category as CategorySlug, slug);
   if (!property) return {};
-  return {
-    title: `${property.title}, ${property.location.locality}`,
-    description: property.description,
-  };
+  // Minimal title; ticket 11 owns the full SEO/OG treatment.
+  return { title: property.title, description: property.description };
 }
 
 export default async function PropertyPage({ params }: { params: Promise<PageParams> }) {
@@ -166,12 +164,6 @@ export default async function PropertyPage({ params }: { params: Promise<PagePar
     </>
   );
 }
-
-const POSSESSION_LABEL: Record<string, string> = {
-  ready: "Ready to move",
-  "under-construction": "Under construction",
-  upcoming: "Upcoming",
-};
 
 function Fundamental({ label, value }: { label: string; value: string }) {
   return (
